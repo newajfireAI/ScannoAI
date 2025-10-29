@@ -17,7 +17,15 @@ export default function LanddingPage() {
   //   { sender: true, reciver: false, message: "hi " },
   //   { sender: false, reciver: true, message: "Hello " },
   //   { sender: true, reciver: false, message: "mlkjsdlfjsdof" },
-  //   { sender: false, reciver: true, message: "sdfdsfsdfdsfsdfsdfsdfsdfsdf" },
+  //   { sender: true, reciver: false, message: `Why do we use it?It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).Where does it come from?` },
+  //   { sender: true, reciver: false, message: "hi " },
+  //   { sender: false, reciver: true, message: "Hello " },
+  //   { sender: true, reciver: false, message: "mlkjsdlfjsdof" },
+  //   { sender: true, reciver: false, message: `Why do we use it?It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).Where does it come from?` },
+  //   { sender: true, reciver: false, message: "hi " },
+  //   { sender: false, reciver: true, message: "Hello " },
+  //   { sender: true, reciver: false, message: "mlkjsdlfjsdof" },
+  //   { sender: true, reciver: false, message: `Why do we use it?It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).Where does it come from?` },
   // ];
   const Messages = [];
   useEffect(() => {
@@ -108,8 +116,8 @@ export default function LanddingPage() {
                     <div key={idx} className={`flex flex-col py-3 px-2 ${msg.sender == true && 'items-start'} ${msg.sender == false && 'items-end'}`}>
                       <div className=''>
                         <p
-                          className={`text-lg  inline-flex px-3 py-2 relative max-w-xl
-                            ${msg.sender == true && 'bg-[#F1F1F1] text-black rounded-t-xl rounded-br-xl Sender text-left'} 
+                          className={`text-lg  inline-flex px-3 py-2 relative 
+                            ${msg.sender == true && 'bg-gray-100 text-black rounded-t-xl rounded-br-xl Sender text-left'} 
                             ${msg.sender == false && 'bg-[#00793D] text-white rounded-t-xl rounded-bl-xl Reciver text-right'} `}
                         >{msg.message}</p>
                       </div>
@@ -120,16 +128,23 @@ export default function LanddingPage() {
             </div>
           </div>)
           : (
-            <div className="">
+            <div className=" text-center ">
+              {/* <Image
+                src={"/assets/logo.png"}
+                width={100}
+                height={100}
+                alt={"Scanno AI Logo"}
+              /> */}
               <h3 className="text-[#00793D] text-3xl font-medium text-center">{isArabic ? " هلا والله! أنا سكانو، خبير فحص السيارات عندك في قطر. شلون أقدر أساعدك اليوم؟" : "SCANNO - Smart Car Inspection"}</h3>
               <p className="text-xl font-medium text-center mt-10 mb-3">{isArabic ? "هلا! أنا سكانو – خبير فحص السيارات الذكي في قطر." : "I’m Scanno - your smart car inspection expert in Qatar"}</p>
               <p className="text-xl text-center mb-10">{isArabic ? "حمّل تقرير فحصك أو اسألني عن حالة سيارتك، وأنا بخبرك بكل التفاصيل." : "Upload your report or ask me about your car’s condition"}</p>
 
+              <button disabled className="text-center text-md px-20 py-2.5 rounded-xl bg-[#00793d59] mb-4 opacity-50">{isArabic ? " أنصحك تغيّر فلتر الزيت بأقرب وقت، عشان لا تتعب الماكينة بعدين" : "Your data stays private. Scanno doesn’t store or keep any reports. "}</button>
               <div>
-                <div className="flex items-center gap-2">
-                    <input type="checkbox"  id="teams" defaultChecked className="checkbox checkbox-success border-2 border-[#00793D] bg-[#00793D] text-white" />
-                    <label htmlFor="teams" className="text-[#DF2929] text-xl text-center">{isArabic ? "حمّل تقرير فحصك أو اسألني عن حالة سيارتك، وأنا بخبرك بكل التفاصيل." : "I agree that my report will be processed instantly and not stored"}</label>
-                  </div>
+                <div className="flex items-center justify-center gap-2">
+                  <input type="checkbox" id="teams" defaultChecked className="checkbox checkbox-success border-2 border-[#00793D] bg-[#00793D] text-white" />
+                  <label htmlFor="teams" className="text-[#DF2929] text-xl text-center">{isArabic ? "حمّل تقرير فحصك أو اسألني عن حالة سيارتك، وأنا بخبرك بكل التفاصيل." : "I agree that my report will be processed instantly and not stored"}</label>
+                </div>
               </div>
             </div>
           )}
