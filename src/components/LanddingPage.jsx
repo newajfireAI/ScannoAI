@@ -128,7 +128,7 @@ export default function LanddingPage() {
               <div>
                 <div className="flex items-center gap-2">
                     <input type="checkbox"  id="teams" defaultChecked className="checkbox checkbox-success border-2 border-[#00793D] bg-[#00793D] text-white" />
-                    <label htmlFor="teams" className="text-[#DF2929]">{isArabic ? "حمّل تقرير فحصك أو اسألني عن حالة سيارتك، وأنا بخبرك بكل التفاصيل." : "I agree that my report will be processed instantly and not stored"}</label>
+                    <label htmlFor="teams" className="text-[#DF2929] text-xl text-center">{isArabic ? "حمّل تقرير فحصك أو اسألني عن حالة سيارتك، وأنا بخبرك بكل التفاصيل." : "I agree that my report will be processed instantly and not stored"}</label>
                   </div>
               </div>
             </div>
