@@ -1,6 +1,5 @@
 "use client";
-import { Icon } from "@iconify/react";
-import Image from "next/image";
+
 import { useEffect, useRef, useState } from "react";
 import Navbar from "./Navbar";
 import IputFiled from "./IputFiled";
@@ -8,27 +7,13 @@ import IputFiled from "./IputFiled";
 
 export default function LanddingPage() {
   const [isArabic, setIsArabic] = useState(false);
-  const [message, setMessage] = useState([]);
-  const [showfileOption, setShowFileOption] = useState(false)
+  const [messages, setMessages] = useState([]);
   const clieckref = useRef(null)
-  const [ImgError, setImgError] = useState('')
-  const [image, setImage] = useState(null);
   const [isSelected, setIsSelected] = useState(false);
 
 
-  const hendleSendMessage = (e) => {
-    e.preventDefault()
-    console.log(e.target.message.value);
-    console.log(e.target.pdf.value);
-    console.log(e.target.Image.value);
-    console.log(image);
-
-  }
-
   
-  useEffect(() => {
-    setMessage(Messages);
-  }, []);
+
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -41,31 +26,13 @@ export default function LanddingPage() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      if (file.size > 1024 * 1024) {
-        setImgError(`Your file size is ${file.size} bytes which is more than 100 KB`);
-        setImage(null);
-        return;
-      }
-
-      const img = new window.Image();
-      img.src = URL.createObjectURL(file);
-
-      img.onload = () => {
-        setImgError("");
-        setImage(img.src);
-      };
-    }
-  };
   const hendleChangeLanguage = () => {
     setIsArabic(!isArabic)
   }
   const handleChange = (e) => {
     setIsSelected(e.target.checked);
   };
+
 
 
   return (
@@ -79,25 +46,25 @@ export default function LanddingPage() {
     >
       <div className="bg-black/75 w-screen h-screen flex flex-col">
 
-        {/* ==== NAVBAR ==== */}
+
         <Navbar hendleChangeLanguage={hendleChangeLanguage} isArabic={isArabic} />
 
-        {/* ==== MAIN CHAT SECTION ==== */}
-        <section className={`flex-1 w-[80%] mx-auto flex flex-col ${message.length > 0 ? "justify-between" : "justify-center items-center"}`}>
 
-          {message.length > 0 ?
+        <section className={`flex-1 w-[80%] mx-auto flex flex-col ${messages.length > 0 ? "justify-between" : "justify-center items-center"}`}>
+
+          {messages.length > 0 ?
             (<div className="flex-1 w-full p-4 overflow-y-auto">
               <div className='h-full flex flex-col '>
                 {/* Chat Area */}
                 <div className='w-full flex-1 px-10 overflow-y-scroll hide-scrollbar h-full'>
                   <div className='h-1 flex flex-col justify-between '>
-                    {Messages.map((msg, idx) =>
+                    {messages.map((msg, idx) =>
 
                       <div key={idx} className={`flex flex-col py-3 px-2 ${msg.sender == true && 'items-start'} ${msg.sender == false && 'items-end'}`}>
                         <div className=''>
                           <p
                             className={`text-lg  inline-flex px-3 py-2 relative 
-                            ${msg.sender == true && 'bg-gray-100 text-black rounded-t-xl rounded-br-xl Sender text-left'} 
+                            ${msg.sender == true && 'bg-gray-50 text-black rounded-t-xl rounded-br-xl Sender text-left'} 
                             ${msg.sender == false && 'bg-[#00793D] text-white rounded-t-xl rounded-bl-xl Reciver text-right'} `}
                           >{msg.message}</p>
                         </div>
@@ -124,7 +91,7 @@ export default function LanddingPage() {
             )}
 
           {/* ==== MESSAGE INPUT ==== */}
-          <IputFiled isSelected={isSelected}/>
+          <IputFiled isSelected={isSelected} messages={messages} setMessages={setMessages} />
         </section>
 
         {/* ==== FOOTER ==== */}

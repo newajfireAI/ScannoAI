@@ -2,7 +2,7 @@
 import { Icon } from "@iconify/react";
 import React, { useEffect, useRef, useState } from "react";
 
-export default function InputField({ isSelected, message }) {
+export default function InputField({ isSelected, messages, setMessages }) {
     const [showFileOption, setShowFileOption] = useState(false);
     const clickRef = useRef(null);
     const [images, setImages] = useState([]);
@@ -15,13 +15,42 @@ export default function InputField({ isSelected, message }) {
         const formData = new FormData(e.target);
         const Message = formData.get("message");
 
-        const allFiles = {
-            message: Message || null,
-            pdfs: pdfs.length ? pdfs : null,
-            images: images.length ? images : null,
+
+        const newMessage = {
+            id: Date.now(),
+            message: Message || "",
+            pdfs: pdfs,
+            images: images,
+            time: new Date().toLocaleTimeString(),
         };
 
-        console.log("📩 Sending:", allFiles);
+
+        // setMessages((prev) => [...prev, newMessage]);
+
+        const Messages = [
+            { sender: false, message: "Do you able to inspate my car report" },
+            {
+                sender: true,
+                message:
+                    "Yes, I can inspect your car report based on your PDF or image. If you send me your file, I will check it carefully and provide you with a detailed inspection report along with the best suggestions. Do you agree to send me your file?",
+            },
+            {
+                sender: false,
+                message:
+                    "Okay, I will send my PDF. Just check it and give me your detailed report.",
+            },
+            {
+                sender: true,
+                message:
+                    "Sure! Please upload your PDF file now. Once I receive it, I’ll review the full report and share my detailed findings with you shortly.",
+            },
+            { sender: false, message: "Thank you, it's helped me a lot." },
+        ];
+
+        
+            setMessages(Messages);
+        
+
 
         setImages([]);
         setPdfs([]);
@@ -63,9 +92,9 @@ export default function InputField({ isSelected, message }) {
     return (
         <>
 
-            <div className={`${message.length > 0 ? "w-full" : "w-[50%]"
-                    } mt-3 flex flex-wrap gap-3 justify-start items-start`}>
-                        
+            <div className={`${messages.length > 0 ? "w-full" : "w-[50%]"
+                } mt-3 flex flex-wrap gap-3 justify-start items-start`}>
+
                 {images.map((img, idx) => (
                     <div key={idx} className="relative">
                         <img
@@ -79,7 +108,7 @@ export default function InputField({ isSelected, message }) {
                             }
                             className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
                         >
-                            ✕
+                            <Icon icon="gridicons:cross" width="24" height="24" />
                         </button>
                     </div>
                 ))}
@@ -105,7 +134,7 @@ export default function InputField({ isSelected, message }) {
 
 
             <div
-                className={`${message.length > 0 ? "w-full" : "w-[50%]"
+                className={`${messages.length > 0 ? "w-full" : "w-[50%]"
                     } flex border-2 border-[#00793D] px-4 py-2 rounded-full mt-4 shadow-sm`}
             >
                 <form
@@ -173,11 +202,9 @@ export default function InputField({ isSelected, message }) {
 
                     <input
                         type="text"
-                        placeholder="Type your message..."
+                        placeholder="Ask me Anything about you car..."
                         className="flex-1 focus:outline-none bg-transparent text-white placeholder:text-white"
                         name="message"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
                     />
 
                     <button type="submit" disabled={!isSelected}>

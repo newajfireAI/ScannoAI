@@ -1,7 +1,7 @@
-import LanddingPage from "@/components/LanddingPage";
+import LoaddingPage from "@/components/LoaddingPage";
 
 export default function Home() {
   return (
-    <LanddingPage/>
+    <LoaddingPage/>
   );
 }
