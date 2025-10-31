@@ -9,7 +9,7 @@ export default function LanddingPage() {
   const [isArabic, setIsArabic] = useState(false);
   const [messages, setMessages] = useState([]);
   const clieckref = useRef(null)
-  const [isSelected, setIsSelected] = useState(false);
+  const [isSelected, setIsSelected] = useState(true);
 
 
   
@@ -76,17 +76,17 @@ export default function LanddingPage() {
             </div>)
             : (
               <div className=" text-center text-white">
-                <h3 className="text-white text-5xl font-black text-center">{isArabic ? " هلا والله! أنا سكانو، خبير فحص السيارات عندك في قطر. شلون أقدر أساعدك اليوم؟" : "SCANNO - Smart Car Inspection"}</h3>
-                <p className="text-xl font-medium text-center mt-10 mb-3">{isArabic ? "هلا! أنا سكانو – خبير فحص السيارات الذكي في قطر." : "I’m Scanno - your smart car inspection expert in Qatar"}</p>
-                <p className="text-xl text-center mb-10">{isArabic ? "حمّل تقرير فحصك أو اسألني عن حالة سيارتك، وأنا بخبرك بكل التفاصيل." : "Upload your report or ask me about your car’s condition"}</p>
+                <h3 className="text-white text-5xl font-black text-center animRight">{isArabic ? " هلا والله! أنا سكانو، خبير فحص السيارات عندك في قطر. شلون أقدر أساعدك اليوم؟" : "SCANNO - Smart Car Inspection"}</h3>
+                <p className="text-xl font-medium text-center mt-10 mb-3">{isArabic ? "معلوماتك محفوظة، وسكانو ما يحتفظ بتقاريرك ولا يخزّنها نهائي." : "I’m Scanno - your smart car inspection expert in Qatar"}</p>
+                <p className="text-xl text-center mb-10">{isArabic ? "أوافق إن تقريري ينفحص مباشرة بدون ما يتم تخزينه" : "Upload your report or ask me about your car’s condition"}</p>
 
-                <button disabled className="text-center text-white text-md px-20 py-2.5 rounded-xl bg-[#00793d59] mb-8">{isArabic ? " أنصحك تغيّر فلتر الزيت بأقرب وقت، عشان لا تتعب الماكينة بعدين" : "Your data stays private. Scanno doesn’t store or keep any reports. "}</button>
+                {/* <button disabled className="text-center text-white text-md px-20 py-2.5 rounded-xl bg-[#00793d59] mb-8">{isArabic ? " أنصحك تغيّر فلتر الزيت بأقرب وقت، عشان لا تتعب الماكينة بعدين" : "Your data stays private. Scanno doesn’t store or keep any reports. "}</button>
                 <div>
                   <div className="flex items-center justify-center gap-2">
                     <input onChange={handleChange} checked={isSelected} type="checkbox" id="teams" className="checkbox checkbox-success border-2 border-[#00793D] text-white" />
                     <label htmlFor="teams" className="text-[#DF2929] text-xl text-center">{isArabic ? "حمّل تقرير فحصك أو اسألني عن حالة سيارتك، وأنا بخبرك بكل التفاصيل." : "I agree that my report will be processed instantly and not stored"}</label>
                   </div>
-                </div>
+                </div> */}
               </div>
             )}
 
