@@ -1,12 +1,18 @@
 "use client";
+import { AuthContext } from "@/provider/AuthProvider";
 import { Icon } from "@iconify/react";
-import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
-export default function InputField({ isSelected, messages, setMessages }) {
+export default function InputField() {
+    const {isArabic} = useContext(AuthContext)
     const [showFileOption, setShowFileOption] = useState(false);
     const clickRef = useRef(null);
     const [images, setImages] = useState([]);
     const [pdfs, setPdfs] = useState([]);
+    const [messages, setMessages] = useState([])
+    const pathName = usePathname()
 
 
     const handleSendMessage = (e) => {
@@ -92,7 +98,7 @@ export default function InputField({ isSelected, messages, setMessages }) {
     return (
         <>
 
-            <div className={`${messages.length > 0 ? "w-full" : "w-[50%]"
+            <div className={`${(pathName === "/inbox") ? "w-full" : "w-[50%]"
                 } mt-3 flex flex-wrap gap-3 justify-start items-start`}>
 
                 {images.map((img, idx) => (
@@ -134,7 +140,7 @@ export default function InputField({ isSelected, messages, setMessages }) {
 
 
             <div
-                className={`${messages.length > 0 ? "w-full" : "w-[50%]"
+                className={`${(pathName === "/inbox") ? "w-full" : "w-[50%]"
                     } flex border-2 border-[#00793D] px-4 py-2 rounded-full mt-4 shadow-sm`}
             >
                 <form
@@ -202,19 +208,18 @@ export default function InputField({ isSelected, messages, setMessages }) {
 
                     <input
                         type="text"
-                        placeholder="Ask me Anything about you car..."
+                        placeholder={isArabic ? "اسألني عن أي شيء يخص سيارتك…":"Ask me Anything about you car..."}
                         className="flex-1 focus:outline-none bg-transparent text-white placeholder:text-white"
                         name="message"
                     />
 
-                    <button type="submit" disabled={!isSelected}>
-                        <Icon
+                    <button type="submit">
+                        <Link href={'/inbox'}><Icon
                             icon="ri:send-plane-fill"
-                            className={`${isSelected ? "text-[#00793D]" : "text-gray-500"
-                                } font-bold`}
+                            className={`text-[#00793D] font-bold`}
                             width={24}
                             height={24}
-                        />
+                        /></Link>
                     </button>
                 </form>
             </div>

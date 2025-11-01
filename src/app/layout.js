@@ -1,5 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import AuthProvider from "@/provider/AuthProvider";
+import Navbar from "@/components/Navbar";
+import Container from "@/components/Container";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +26,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <AuthProvider>
+          <Container>
+            <Navbar />
+            {children}
+            <p className="text-center pb-2 text-sm text-white fixed bottom-1 left-1/2 -translate-x-1/2">
+              Powered by Scanno AI - Qatar | Secure instant analysis
+            </p>
+          </Container>
+        </AuthProvider>
       </body>
     </html>
   );

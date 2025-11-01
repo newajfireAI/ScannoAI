@@ -10,7 +10,7 @@ export default function LoaddingPage() {
 
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 500);
+        }, 200);
 
         return () => clearTimeout(timer);
     }, []);
@@ -25,15 +25,7 @@ export default function LoaddingPage() {
                 className="w-screen h-screen "
             >
 
-                <div className="flex justify-center items-center h-screen bg-black/75">
-                    <Image
-                        className="animate-pulse"
-                        src={"/assets/LOGO_SCANNOAI.png"}
-                        width={300}
-                        height={300}
-                        alt={"Scanno AI Logo"}
-                    />
-                </div>
+                
             </div>
         );
     }
